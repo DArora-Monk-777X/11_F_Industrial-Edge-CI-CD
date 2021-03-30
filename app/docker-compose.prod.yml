@@ -1,7 +1,9 @@
 version: '2.4'
 services:
   hello-edge:
-    image: hello-edge:0.0.$GITHUB_RUN_NUMBER
+    image: hello-edge:0.0.VERSION
+    environment:
+      - VERSION=$GITHUB_RUN_NUMBER
     mem_limit: 200mb
     restart: always
     volumes:
