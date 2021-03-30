@@ -70,7 +70,6 @@ jobs:
           ie-app-publisher-linux de c -u http://docker:2375
           export IE_SKIP_CERTIFICATE=true
           ie-app-publisher-linux em li -u ${{secrets.IEM_URL}} -e ${{secrets.USER_NAME}} -p ${{secrets.PSWD}}
-
           version=$(ie-app-publisher-linux em app dt -a ${{secrets.APP_ID}} -p | \
             python3 -c "import sys, json; print(json.load(sys.stdin)['versions'][0]['versionNumber'])")
           echo 'old Version: '$version
