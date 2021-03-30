@@ -14,12 +14,7 @@ jobs:
       credentials:
         username: ${{secrets.DOCKERHUB_USERNAME}}
         password: ${{secrets.DOCKERHUB_PSWD}}
-     
-    services: 
-     docker: 
-        image: docker:18.09-dind
-        options: --privileged
-
+        
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
      - uses: actions/checkout@v2
@@ -32,8 +27,9 @@ jobs:
          cp -R ./html ./artifacts
          cd artifacts
          ls
-         docker-compose build --host tcp://docker:2375
-         docker --host tcp://docker:2375 save -o docker-images.tar $(docker-compose config | awk '{if ($1 == "image:") print $2;}')
+         docker image prune -a -f
+         docker-compose build 
+         docker save -o docker-images.tar $(docker-compose config | awk '{if ($1 == "image:") print $2;}')
      - uses: actions/upload-artifact@master
        with:
           name: my-artifact
