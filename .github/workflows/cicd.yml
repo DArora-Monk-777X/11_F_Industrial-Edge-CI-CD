@@ -61,6 +61,7 @@ jobs:
       - name: Loading docker images
         run: |
           cd  app/artifacts/
+          docker image prune -a -f
           docker --host tcp://docker:2375 load --input docker-images.tar
       - name: Uploading app to IEM
         run: |
