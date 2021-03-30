@@ -24,6 +24,7 @@ jobs:
          mkdir artifacts
          cp docker-compose.yml ./artifacts
          cp Dockerfile ./artifacts
+         cp -R ./html ./artifacts
          cd artifacts
          ls
          docker-compose build 
