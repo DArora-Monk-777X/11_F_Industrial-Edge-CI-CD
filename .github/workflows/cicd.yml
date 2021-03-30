@@ -23,6 +23,7 @@ jobs:
          cd app
          mkdir artifacts
          cp docker-compose.yml ./artifacts
+         cp Dockerfile ./artifacts
          cd artifacts
          ls
          docker-compose build 
