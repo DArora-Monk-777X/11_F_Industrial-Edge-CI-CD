@@ -32,7 +32,6 @@ jobs:
          cp -R ./html ./artifacts
          cd artifacts
          ls
-         docker image prune -a -f --host tcp://docker:2375
          docker-compose build --host tcp://docker:2375
          docker --host tcp://docker:2375 save -o docker-images.tar $(docker-compose config | awk '{if ($1 == "image:") print $2;}')
      - uses: actions/upload-artifact@master
